@@ -59,8 +59,8 @@ namespace Windows_Forms_Countdown
         private int nLargeNumbers;
         public Form1()
         {
-            this.Text = "Welcome to Countdown.";
             InitializeComponent();
+            this.Text = "Welcome!";
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)

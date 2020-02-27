@@ -150,13 +150,10 @@ namespace Windows_Forms_Countdown
 
         void selectOperator(Operator @operator)
         {
-            if (!this.selectingNumber) // Only acts if the user is meant to be selecting an operator.
-            {
-                this.chosenOperator = @operator;
-                this.label4.Text = this.operatorString();
-                this.label6.Text = "Select a number.";
-                this.selectingNumber = true;
-            }
+            this.chosenOperator = @operator;
+            this.label4.Text = this.operatorString();
+            this.label6.Text = "Select a number\nor change the operator.";
+            this.selectingNumber = true;
         }
         private void button6_Click(object sender, EventArgs e)
         {
