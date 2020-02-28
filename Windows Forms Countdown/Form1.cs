@@ -30,36 +30,12 @@ namespace Windows_Forms_Countdown
         }
         public static Random rnd = new Random();
 
-        public static int[] TakeNumbers(int[] numbers, int howMany, int shuffles = 1)
-        {
-            // Return a set of randomly selected numbers from 'numbers' of length 'howMany'.
-
-            var numberOfElements = numbers.Length;
-            int buffer;
-            int randomPosition;
-            int[] returnValues = new int[howMany];
-
-            for (int repeats = 0; repeats < shuffles; repeats++) // Re-shuffles the numbers for extra randomness, at a time cost.
-            {
-                for (int i = 0; i < numberOfElements; i++)
-                {
-                    randomPosition = rnd.Next(numberOfElements);
-
-                    buffer = numbers[i];
-                    numbers[i] = numbers[randomPosition];
-                    numbers[randomPosition] = buffer;
-
-                }
-            }
-            for (int k = 0; k < howMany; k++)
-                returnValues[k] = numbers[k];
-
-            return returnValues;
-        }
         private int nLargeNumbers;
+
         public Form1()
         {
             InitializeComponent();
+            this.AcceptButton = this.button6;
             this.Text = "Welcome!";
         }
 
