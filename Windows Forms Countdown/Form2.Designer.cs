@@ -47,6 +47,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.button11 = new System.Windows.Forms.Button();
+            this.btUndo = new System.Windows.Forms.Button();
             this.operatorSelector.SuspendLayout();
             this.numberView.SuspendLayout();
             this.SuspendLayout();
@@ -279,11 +280,22 @@
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
+            // btUndo
+            // 
+            this.btUndo.Location = new System.Drawing.Point(140, 191);
+            this.btUndo.Name = "btUndo";
+            this.btUndo.Size = new System.Drawing.Size(75, 23);
+            this.btUndo.TabIndex = 15;
+            this.btUndo.Text = "Undo";
+            this.btUndo.UseVisualStyleBackColor = true;
+            this.btUndo.Click += new System.EventHandler(this.btUndo_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(571, 231);
+            this.Controls.Add(this.btUndo);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -324,5 +336,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button btUndo;
     }
 }

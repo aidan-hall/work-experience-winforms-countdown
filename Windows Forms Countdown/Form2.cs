@@ -19,6 +19,7 @@ namespace Windows_Forms_Countdown
         int targetValue;
         int runningTotal = -1;
         Operator chosenOperator;
+        int previousIndex;
         bool selectingNumber;
         Random rnd = new Random();
         int[] TakeNumbers(int[] numbers, int howMany, int shuffles = 1)
@@ -80,6 +81,7 @@ namespace Windows_Forms_Countdown
             this.targetValue = rnd.Next(101, 1000);
             this.label1.Text = targetValue.ToString();
             this.selectingNumber = true;
+            this.btUndo.Hide();
         }
 
         public static int applyOperator (int cummulativeValue, int nextValue, Operator @operator)
@@ -95,7 +97,7 @@ namespace Windows_Forms_Countdown
                 case Operator.DIV: // Return -1 if the division results in a non-integer value.
                     return (cummulativeValue % nextValue == 0) ? (cummulativeValue/nextValue) : -1;
                 default: // Theoretically, this should never run.
-                    return -1;
+                    throw new ArgumentException("It's supposed to be an Operator.", "original");
             }
         }
         bool selectNumber(int index)
@@ -116,6 +118,8 @@ namespace Windows_Forms_Countdown
                         this.Close();
                     }
                 }
+                this.btUndo.Show();
+                this.previousIndex = index;
                 this.label3.Text = this.runningTotal.ToString();
                 this.label4.Text = " ";
                 this.label6.Text = "Select an operator.";
@@ -258,7 +262,7 @@ namespace Windows_Forms_Countdown
 
         private void button11_Click(object sender, EventArgs e)
         {
-            if (this.runningTotal != -1)
+            if (this.runningTotal != -1) // User must select at least one number before clicking done.
             {
                 int finalDifference = Math.Abs(this.targetValue - this.runningTotal);
 
@@ -272,9 +276,22 @@ namespace Windows_Forms_Countdown
                 else
                     points = 0;
 
-                Form3 savingForm = new Form3(points, finalDifference);
-                savingForm.Show();
-                this.Close();
+                DialogResult confirmFinish = DialogResult.No;
+                if (!this.usedNumbers.All(b => b) && (finalDifference != 0))
+                {
+                    confirmFinish = MessageBox.Show("Are you sure you want to finish?\nYou will get "+points.ToString()+" points if you finish now.",
+                        "Confirm.",
+                        MessageBoxButtons.YesNo);
+                } else
+                    confirmFinish = DialogResult.Yes;
+
+
+                if (confirmFinish == DialogResult.Yes || finalDifference == 0) 
+                {
+                    Form3 savingForm = new Form3(points, finalDifference);
+                    savingForm.Show();
+                    this.Close();
+                }
             }
         }
 
@@ -282,5 +299,70 @@ namespace Windows_Forms_Countdown
         {
 
         }
+
+        private void btUndo_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+            foreach (bool used in this.usedNumbers)
+            {
+                if (used) ++count;
+            }
+            if (count > 1)
+            {
+                Operator reversalOperator = oppositeOperator(this.chosenOperator);
+                this.runningTotal = applyOperator(runningTotal, numbers[previousIndex], reversalOperator);
+                this.label3.Text = this.runningTotal.ToString();
+                this.label6.Text = "Previous action undone.\nSelect an operator.";
+            }
+            else
+            {
+                this.label3.Text = "  _  ";
+                this.label6.Text = "Previous action undone.\nSelect a number.";
+                // Resets state to how it is initially.
+                this.selectingNumber = true;
+                this.runningTotal = -1;
+            }
+            this.usedNumbers[previousIndex] = false;
+            this.getNumberButton(previousIndex).BackColor = Color.Blue;
+            this.label4.Text = " ";
+            this.btUndo.Hide();
+        }
+        ref Button getNumberButton(int index)
+        {
+            switch (index)
+            {
+                case 0:
+                    return ref this.button5;
+                case 1:
+                    return ref this.button6;
+                case 2:
+                    return ref this.button7;
+                case 3:
+                    return ref this.button8;
+                case 4:
+                    return ref this.button9;
+                case 5:
+                    return ref this.button10;
+                default:
+                    throw new IndexOutOfRangeException();
+
+            }
+        }
+        Operator oppositeOperator(Operator @operator)
+        {
+            switch (@operator)
+            {
+                case Operator.ADD:
+                    return Operator.SUB;
+                case Operator.SUB:
+                    return Operator.ADD;
+                case Operator.MUL:
+                    return Operator.DIV;
+                case Operator.DIV:
+                    return Operator.MUL;
+                default:
+                    throw new System.ArgumentException("Argument must be and Operator enumeration.", "original");
+            }
+        }
     }
-}
+} 

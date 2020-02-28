@@ -23,6 +23,7 @@ namespace Windows_Forms_Countdown
             this.points = points;
             this.difference = difference;
             InitializeComponent();
+            this.AcceptButton = this.nameConfirmationButton; // User can press enter to submit their score.
             this.Text = "Save Results.";
             this.differenceLabel.Text = "Difference: " + this.difference.ToString();
             this.pointsDisplay.Text = "Points: " + this.points.ToString();
