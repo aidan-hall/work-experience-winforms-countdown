@@ -124,7 +124,7 @@
             this.numberView.Controls.Add(this.button7);
             this.numberView.Controls.Add(this.button6);
             this.numberView.Controls.Add(this.button5);
-            this.numberView.Location = new System.Drawing.Point(9, 59);
+            this.numberView.Location = new System.Drawing.Point(9, 53);
             this.numberView.Name = "numberView";
             this.numberView.Size = new System.Drawing.Size(491, 57);
             this.numberView.TabIndex = 7;
