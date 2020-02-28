@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.operatorSelector = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -48,8 +50,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.button11 = new System.Windows.Forms.Button();
             this.btUndo = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.operatorSelector.SuspendLayout();
             this.numberView.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // operatorSelector
@@ -69,6 +74,7 @@
             // 
             // button1
             // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(6, 19);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
@@ -79,16 +85,18 @@
             // 
             // button4
             // 
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.Location = new System.Drawing.Point(249, 19);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 3;
-            this.button4.Text = "/";
+            this.button4.Text = "÷";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button2
             // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(87, 19);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
@@ -99,11 +107,12 @@
             // 
             // button3
             // 
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Location = new System.Drawing.Point(168, 19);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 2;
-            this.button3.Text = "*";
+            this.button3.Text = "×";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -115,7 +124,7 @@
             this.numberView.Controls.Add(this.button7);
             this.numberView.Controls.Add(this.button6);
             this.numberView.Controls.Add(this.button5);
-            this.numberView.Location = new System.Drawing.Point(9, 53);
+            this.numberView.Location = new System.Drawing.Point(9, 59);
             this.numberView.Name = "numberView";
             this.numberView.Size = new System.Drawing.Size(491, 57);
             this.numberView.TabIndex = 7;
@@ -290,11 +299,28 @@
             this.btUndo.UseVisualStyleBackColor = true;
             this.btUndo.Click += new System.EventHandler(this.btUndo_Click);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "countdown-logo.png");
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Windows_Forms_Countdown.Properties.Resources.countdown_logo;
+            this.pictureBox1.Location = new System.Drawing.Point(464, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(95, 54);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 16;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(571, 231);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btUndo);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.label6);
@@ -310,6 +336,7 @@
             this.Load += new System.EventHandler(this.Form2_Load);
             this.operatorSelector.ResumeLayout(false);
             this.numberView.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -337,5 +364,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button btUndo;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

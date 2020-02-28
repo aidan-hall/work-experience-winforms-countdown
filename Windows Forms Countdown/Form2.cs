@@ -104,20 +104,23 @@ namespace Windows_Forms_Countdown
         {
             if (!this.usedNumbers[index] && this.selectingNumber)
             {
-                this.usedNumbers[index] = true;
-                this.selectingNumber = false;
 
                 if (this.runningTotal == -1) // If the first value hasn't been chosen.
                     this.runningTotal = this.numbers[index];
                 else
                 {
+                    int backupTotal = this.runningTotal;
                     this.runningTotal = applyOperator(this.runningTotal, this.numbers[index], this.chosenOperator);
                     if (this.runningTotal < 0)
                     {
-                        MessageBox.Show("You can't do that. Goodbye.");
-                        this.Close();
+                        this.label6.Text = "You can`t do that.\nChange your selections.";
+                        this.runningTotal = backupTotal;
+                        //this.Close();
+                        return false;
                     }
                 }
+                this.usedNumbers[index] = true;
+                this.selectingNumber = false;
                 this.btUndo.Show();
                 this.previousIndex = index;
                 this.label3.Text = this.runningTotal.ToString();
@@ -144,9 +147,9 @@ namespace Windows_Forms_Countdown
                 case Operator.SUB:
                     return ("-");
                 case Operator.MUL:
-                    return ("*");
+                    return ("×");
                 case Operator.DIV:
-                    return ("/");
+                    return ("÷");
                 default:
                     return ("?");
             }
